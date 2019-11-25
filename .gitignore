@@ -123,3 +123,4 @@ dmypy.json
 .pyre/
 
 #\json/node_modules/*
+json
