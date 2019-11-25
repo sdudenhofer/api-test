@@ -72,5 +72,21 @@ def api_seq_2_all():
         data.append(output)
         count += 1
     return jsonify(data)
+@app.route('/api/hr/<account>')
+def hr(account):
+    data = []
+    cur = conn.cursor()
+    all_records = cur.execute('SELECT iaacct, iadept, iapnam, iahst# FROM hospf062.indaccum where iaacct = ' + account)
+    count = 0
+    for row in all_records:
+        output = {
+            'account_number' : str(row[0]),
+            'department': str(row[1]),
+            'patient_name': str(row[2]),
+            'hist_num': str(row[3])
+        },
+        data.append(output)
+        count += 1
+    return jsonify(data)
 
 app.run()
